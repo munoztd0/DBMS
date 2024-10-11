@@ -15,12 +15,12 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     dashboardPage( # @importFrom shinydashboardPlus dashboardPage
-      title = HTML(glue::glue('DbVieweR')),
+      title = HTML(glue::glue('EcoCalc')),
 		# Dashboard Page Setup ----------------------------------------------------
 		# options = list(sidebarExpandOnHover = TRUE),
 		skin = "purple",
 		dashboardHeader(
-			title = HTML(glue::glue('DbVieweR'))
+			title = HTML(glue::glue('EcoCalc'))
 		),
 
 		# Dashboard Sidebar -------------------------------------------------------
@@ -34,7 +34,7 @@ app_ui <- function(request) {
                      menuItem(" Import Tables", tabName = "import_table", icon = icon("file-import")),
                      menuItem(" Insert Entries", tabName = "insert_rows", icon = icon("plus-square")),
                      menuItem(" Delete Rows", tabName = "delete_rows", icon = icon("trash-alt")),
-                     menuItem(" Visualize Data", tabName = "graph_table", icon = icon("chart-line")),
+                     #menuItem(" Visualize Data", tabName = "graph_table", icon = icon("chart-line")),
                      menuItem(" About", tabName = "about", icon = icon("info-circle"))
                    )
   ),
@@ -43,7 +43,7 @@ app_ui <- function(request) {
 		# Dashboard Body ----------------------------------------------------------
 
     dashboardBody(
-            title = HTML(glue::glue('DbVieweR')),
+            title = HTML(glue::glue('EcoCalc')),
             shinyjs::useShinyjs(),
             tags$head(
                       tags$script(src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js",
@@ -77,10 +77,10 @@ app_ui <- function(request) {
                 mod_del_rows_ui("delete_rows_1")
               ),
               # #
-              tabItem(
-                tabName = 'graph_table',
-                mod_graph_table_ui("graph_table_1")
-              ),
+              # tabItem(
+              #   tabName = 'graph_table',
+              #   mod_graph_table_ui("graph_table_1")
+              # ),
              # # 
               tabItem(
                 tabName = 'about',
@@ -113,7 +113,7 @@ golem_add_external_resources <- function() {
     favicon(),
     bundle_resources(
       path = app_sys("app/www"),
-      app_title = "DbVieweR"
+      app_title = "EcoCalc"
     )
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert()

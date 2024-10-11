@@ -19,7 +19,6 @@ create_conn <- function(){
     db <- dbConnect(SQLite(), 'test_db_file')
     print("DB already exists")
     
-    print("Database already existsed")
   } else {
     db <- dbConnect(SQLite(), 'test_db_file')
     print("DB doesn't exist")
@@ -27,9 +26,9 @@ create_conn <- function(){
   }
 
 
-  dbWriteTable(db, "iris", iris, overwrite =T)
-  dbWriteTable(db, "mtcars", mtcars, overwrite =T)
-  dbWriteTable(db, "starwars2", starwars2, overwrite =T)
+  # dbWriteTable(db, "iris", iris, overwrite =T)
+  # dbWriteTable(db, "mtcars", mtcars, overwrite =T)
+  # dbWriteTable(db, "starwars2", starwars2, overwrite =T)
   
   return(db)
 }

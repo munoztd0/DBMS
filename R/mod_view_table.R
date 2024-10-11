@@ -55,21 +55,26 @@ mod_view_table_server <- function(id, table_names){
 
     # Render UI for table selection
     output$sel_table_1_ui <- renderUI({  # Use renderUI here
-      selectInput(ns("sel_table_1"), "Tables in Database", choices = sort(table_names(), decreasing = T))
+      selectInput(ns("sel_table_1"), "Tables in Database", choices = sort(table_names(), decreasing = F))
     })
+
+  
 
     # show table
     output$sel_table_view <- DT::renderDT({
       req(input$sel_table_1)
-      dplyr::tbl(conn, input$sel_table_1)  |> collect() |> 
+        # Fetch data from database
+      dplyr::tbl(conn, input$sel_table_1) |> collect() |> 
       DT::datatable(
+        escape = FALSE,  
         filter = "top",
         extensions = 'Scroller',
-        options = list(deferRender = F, dom = 'Bfrtip',
+        options = list(deferRender = F, 
+                       dom = 'Bfrtip',
                        columnDefs = list(list(className = 'dt-left',
-                                              targets = "_all")),
+                                             targets = "_all")),
                        scroller = TRUE, scrollX = T, scrollY = 500,
-                       pageLength = 20, searching = TRUE)
+                       pageLength = 20)
       )
     })
 
@@ -85,7 +90,7 @@ mod_view_table_server <- function(id, table_names){
       if (!is.null(creds_reactive()$level) && creds_reactive()$level > 0 ) {
         output$download <- downloadHandler(
           filename = function() {
-            paste0("data_", input$sel_table_1, ".xlsx")
+            paste0("data_", input$sel_table_1, ".csv")
           },
           content = function(file) {
             db <- dplyr::tbl(conn, input$sel_table_1) |> collect()

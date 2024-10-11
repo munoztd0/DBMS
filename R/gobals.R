@@ -3,8 +3,7 @@
 # Set the language for the app and add the labels for the login page
 shinymanager::set_labels(
    language = "en",
-  "Please authenticate" = "Demo credentials are: <br>  <br>
-  user: shiny <br>  pwd: demo ",
+  "Please authenticate" = "Please authenticate",
   "Username:" = "Username:",
   "Password:" = "Password:",
   "Login" = "Login"
@@ -16,12 +15,12 @@ shinymanager::set_labels(
 
 # data.frame with credentials info
 credentials <- data.frame(
-  user = c("shiny", "user2"),
-  password = c("demo", "pass2"), 
-  password_hash = sapply(c("demo", "pass2"), sodium::password_store), 
-  permissions = c("admin", "manager"),
+  user = c("pierre", "erwan", "shiny"),
+  password = c("^BoPdlu8Ivtc9E", "1lpAnW1NFt*k2v", "demo"), 
+  password_hash = sapply(c("^BoPdlu8Ivtc9E", "1lpAnW1NFt*k2v", "demo"), sodium::password_store), 
+  permissions = c("admin", "admin", "admin"),
   stringsAsFactors = FALSE,
-  level = c(2, 0)
+  level = c(2, 2, 2)
 )
 
 
