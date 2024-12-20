@@ -90,11 +90,52 @@ mod_view_table_server <- function(id, table_names){
       if (!is.null(creds_reactive()$level) && creds_reactive()$level > 0 ) {
         output$download <- downloadHandler(
           filename = function() {
-            paste0("data_", input$sel_table_1, ".csv")
+            paste0("data_", input$sel_table_1, ".xlsx")
           },
           content = function(file) {
             db <- dplyr::tbl(conn, input$sel_table_1) |> collect()
-            readr::write_excel_csv(db, file)
+            # Check if the column 'Link' exists in the dataframe and clean the HTML tags
+            if ("Link" %in% colnames(db)) {
+              # Get the column index of the "Link" column
+               link_col_index <- which(colnames(db) == "Link")
+              
+              db <- db %>%
+                mutate(
+                  # Remove the opening part of the <a> tag
+                  Link = stringr::str_replace(Link, "<a href='", ""),
+                  
+                  # Remove the closing part of the <a> tag and everything after the URL
+                  Link = stringr::str_replace(Link, "' target='_blank'>.*?</a>", ""),
+                  # Link = paste0('HYPERLINK("', Link, '", "CAS Link")')
+                )
+            }
+            # Create a workbook
+            library(openxlsx)
+            wb <- createWorkbook()
+
+            # Add a worksheet
+            addWorksheet(wb, "")
+
+            # Write the entire data frame to the worksheet
+            writeData(wb, sheet = 1, x = db, startCol = 1, startRow = 1, colNames = TRUE)
+            
+            
+            # Loop through each row to add clickable hyperlinks in the 'Link' column
+            if ("Link" %in% colnames(db)) {
+
+
+            # Create clickable hyperlinks in the 'Link' column
+            for(i in 1:nrow(db)) {
+              # Generate the hyperlink formula using the link URL and desired display text
+              hyperlink_formula <- paste0('HYPERLINK("', db$Link[i], '", "Click Here")')
+              
+              # Write the formula to the appropriate column (dynamic column based on Link)
+              writeFormula(wb, sheet = 1, x = hyperlink_formula, startCol = link_col_index, startRow = i + 1)
+            }
+            }
+            # Save the workbook as an xlsx file
+            saveWorkbook(wb, file, overwrite = TRUE)        
+            #openxlsx::write.xlsx(db, file, rowNames=FALSE)
           }
         )
       } 
