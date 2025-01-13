@@ -34,7 +34,6 @@ app_ui <- function(request) {
                      menuItem(" Import Tables", tabName = "import_table", icon = icon("file-import")),
                      menuItem(" Insert Entries", tabName = "insert_rows", icon = icon("plus-square")),
                      menuItem(" Delete Rows", tabName = "delete_rows", icon = icon("trash-alt")),
-                     #menuItem(" Visualize Data", tabName = "graph_table", icon = icon("chart-line")),
                      menuItem(" About", tabName = "about", icon = icon("info-circle"))
                    )
   ),
@@ -77,11 +76,6 @@ app_ui <- function(request) {
                 mod_del_rows_ui("delete_rows_1")
               ),
               # #
-              # tabItem(
-              #   tabName = 'graph_table',
-              #   mod_graph_table_ui("graph_table_1")
-              # ),
-             # # 
               tabItem(
                 tabName = 'about',
                 mod_about_ui("about_1")

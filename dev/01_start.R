@@ -19,9 +19,9 @@
 ## to change the name in the app_sys() function in app_config.R /!\
 ##
 golem::fill_desc(
-  pkg_name = "DbVieweR", # The Name of the package containing the App
-  pkg_title = "A Shiny Database Management Dashboard", # The Title of the package containing the App
-  pkg_description = "This Shiny app simulates a database management system featuring functions like login/logout, save/create/delete tables, add/rename columns.", # The Description of the package containing the App
+  pkg_name = "EcoCalc", # The Name of the package containing the App
+  pkg_title = "", # The Title of the package containing the App
+  pkg_description = "",
   author_first_name = "David", # Your First Name
   author_last_name = "Munoz tord", # Your Last Name
   author_email = "david.munoztord@mailbox.org", # Your Email

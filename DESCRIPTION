@@ -1,8 +1,8 @@
-Package: DbVieweR
-Title: A Shiny Database Management Dashboard
+Package: EcoCalculator
+Title: EcoCalculator: A package to calculate the ecological footprint of a chemical process
 Version: 0.1.1
 Authors@R: person('David', 'Munoz Tord', email = 'david.munoztord@mailbox.org', role = c('cre', 'aut'))
-Description: This Shiny app simulates a database management system featuring functions like login/logout, save/create/delete tables, add/rename columns.
+Description: This package calculates the ecological footprint of a chemical process. The user can input the mass of the reactants and the products of a chemical process and the package will
 License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.1),
@@ -22,8 +22,7 @@ Imports:
     DT,
     pkgload,
     readr,
-    readxl,
-    GWalkR
+    readxl
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2

@@ -86,13 +86,6 @@ With its combination of data manipulation capabilities and visualization tools, 
 - **Smart Table Listing**: Automatically detects and displays all tables in your connected database.
 - **User-Friendly Interface**: Easy-to-use dropdown menu for quick table selection.
 
-### 🔍 Interactive Data Exploration
-- **Powered by GWalkR**: Utilizes the GWalkR package for creating interactive and insightful data visualizations.
-- **Real-Time Rendering**: Visualizations are generated on-the-fly as you explore different tables.
-
-### 🖼️ Customizable Visualizations
-- **One-Click Generation**: Create stunning visualizations with just a single click of the "Generate Visualization" button.
-- **Adaptive Display**: Visualizations adjust automatically to your data structure and content.
 
 ### ⚡ Responsive Design
 - **Fluid Layout**: Optimized for various screen sizes and devices.
